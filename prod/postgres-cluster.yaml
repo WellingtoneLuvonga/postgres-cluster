@@ -8,15 +8,11 @@ spec:
   instances:
     - name: instance1
       replicas: 3
-  backups:
-    pgbackrest:
-      repos:
-        - name: repo1
-          volume:
-            size: 2Gi
-      schedule:
-        full: "0 2 * * 0"
-        differential: "0 2 * * 1-6"
+      dataVolumeClaimSpec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 2Gi # Adjust size as per your requirements
   database:
     name: mydatabase
   users:
@@ -26,8 +22,4 @@ spec:
   patroni:
     dynamicConfiguration:
       synchronous_mode: true
-  monitoring:
-    enablePodMonitor: true
-    exporter:
-      image: quay.io/prometheuscommunity/postgres-exporter:latest
 
