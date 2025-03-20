@@ -4,10 +4,15 @@ metadata:
   name: my-postgres-cluster
   namespace: test
 spec:
-  postgresVersion: 15
+  postgresVersion: 16
   instances:
     - name: instance1
       replicas: 2
+      dataVolumeClaimSpec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 2Gi # Adjust size as per your requirements
   database:
     name: mydatabase
   users:
@@ -17,8 +22,4 @@ spec:
   patroni:
     dynamicConfiguration:
       synchronous_mode: true
-  monitoring:
-    enablePodMonitor: true
-    exporter:
-      image: quay.io/prometheuscommunity/postgres-exporter:latest
 
