@@ -8,15 +8,6 @@ spec:
   instances:
     - name: instance1
       replicas: 2
-  backups:
-    pgbackrest:
-      repos:
-        - name: repo1
-          volume:
-            size: 2Gi
-      schedule:
-        full: "0 2 * * 0"
-        differential: "0 2 * * 1-6"
   database:
     name: mydatabase
   users:
