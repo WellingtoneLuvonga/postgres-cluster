@@ -2,12 +2,12 @@ apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
   name: my-postgres-cluster
-  namespace: postgres-operator
+  namespace: test
 spec:
   postgresVersion: 15
   instances:
     - name: instance1
-      replicas: 3
+      replicas: 2
   backups:
     pgbackrest:
       repos:
